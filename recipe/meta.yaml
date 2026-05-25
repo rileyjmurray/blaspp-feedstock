@@ -1,15 +1,15 @@
 {% set name = "blaspp" %}
-{% set version = "2022.05.00" %}
+{% set version = "2025.05.28" %}
 {% set build = 0 %}
-{% set sha256 = "696277859bc1bd9c0aeb0cb170a1e259765c0a86af49b20afa0ffcbabc3e207e" %}
+{% set sha256 = "c54a302c78676e611e18339cab388992ef02d3fb323a6bae7a0df54643245629" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ version }}.tar.gz
-  url: https://bitbucket.org/icl/blaspp/downloads/blaspp-{{ version }}.tar.gz
+  fn: blaspp-{{ version }}.tar.gz
+  url: https://github.com/icl-utk-edu/blaspp/releases/download/v{{ version }}/blaspp-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -23,22 +23,26 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - make           # [unix]
     - ninja          # [win]
-    - cmake >=3.15.0
+    - cmake >=3.21
     - llvm-openmp    # [osx]
     - libgomp        # [linux]
   host:
     - libblas
     - libcblas
+    - liblapack
 
 test:
   commands:
     - test -f ${PREFIX}/lib/libblaspp${SHLIB_EXT}                                 # [unix]
+    - test -f ${PREFIX}/lib/libblaspp.so.2                                        # [linux]
+    - test -f ${PREFIX}/lib/libblaspp.2.dylib                                     # [osx]
     - if exist %LIBRARY_PREFIX%\bin\blaspp.dll (exit 0) else (exit 1)             # [win]
 
-    - test -f ${PREFIX}/lib/blaspp/blasppConfig.cmake                             # [unix]
-    - if exist %LIBRARY_PREFIX%\lib\blaspp\blasppConfig.cmake (exit 0) else (exit 1)  # [win]
+    - test -f ${PREFIX}/lib/cmake/blaspp/blasppConfig.cmake                       # [unix]
+    - if exist %LIBRARY_PREFIX%\lib\cmake\blaspp\blasppConfig.cmake (exit 0) else (exit 1)  # [win]
 
 about:
   home: https://icl.utk.edu/slate/

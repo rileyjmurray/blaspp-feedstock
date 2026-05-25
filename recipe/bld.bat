@@ -11,7 +11,8 @@ cmake -S . -B build             ^
     -Dbuild_tests=OFF           ^
     -Duse_cmake_find_blas=ON    ^
     -Duse_openmp=OFF            ^
-    -Dgpu_backend=none
+    -Dgpu_backend=none          ^
+    -Dblas_int="int (LP64)"
 if errorlevel 1 exit 1
 
 cmake --build build --config Release --parallel 2
