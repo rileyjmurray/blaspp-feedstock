@@ -66,7 +66,7 @@ about:
     Exascale Computing Initiative (ECP). Closely related to BLAS++ is the
     LAPACK++ project, which provides a C++ API for LAPACK.
   doc_url: https://icl.bitbucket.io/blaspp/
-  dev_url: https://bitbucket.org/icl/blaspp
+  dev_url: https://github.com/icl-utk-edu/blaspp
 
 extra:
   recipe-maintainers:
