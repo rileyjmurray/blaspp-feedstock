@@ -9,7 +9,7 @@ Package license: BSD-3-Clause
 
 Summary: C++ API for the Basic Linear Algebra Subroutines
 
-Development: https://bitbucket.org/icl/blaspp
+Development: https://github.com/icl-utk-edu/blaspp
 
 Documentation: https://icl.bitbucket.io/blaspp/
 
